@@ -7,7 +7,7 @@ evaluation honestly.
 
 A research project by **Mahima Agarwal** ([@mahi01agarwal](https://github.com/mahi01agarwal),
 `User:AgarwalMahima`) and **Dev** ([@mishradev1](https://github.com/mishradev1),
-`Devdoingdev`), for the Indic Wiki Hackathon 2026.
+`Devdoingdev`)
 Tracking task: [phab:T428896](https://phabricator.wikimedia.org/T428896).
 
 ---
