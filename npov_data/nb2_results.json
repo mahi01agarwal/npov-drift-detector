@@ -1,0 +1,108 @@
+{
+  "task": "https://phabricator.wikimedia.org/T428896",
+  "notebook": "02_null_model",
+  "generated_utc": "2026-10-21T06:33:01+00:00",
+  "wiki": "en.wikipedia.org",
+  "window_days": 90,
+  "n_pairs": 481,
+  "n_rows": 962,
+  "n_features": 21,
+  "features": [
+    "n_revs",
+    "revs_per_day",
+    "max_revs_one_day",
+    "n_editors",
+    "editor_hhi",
+    "top_editor_share",
+    "anon_share",
+    "bot_share",
+    "minor_share",
+    "reverting_share",
+    "reverted_share",
+    "new_account_edit_share",
+    "size_end",
+    "size_net_delta",
+    "size_abs_churn",
+    "size_delta_std",
+    "empty_summary_share",
+    "talk_revs",
+    "pageviews",
+    "empty_window",
+    "pageviews_missing"
+  ],
+  "models": {
+    "logistic": {
+      "roc_auc": 0.8042,
+      "ci95": [
+        0.7755,
+        0.8302
+      ],
+      "pr_auc": 0.813,
+      "fold_aucs": [
+        0.8443,
+        0.792,
+        0.8457,
+        0.7361,
+        0.8024
+      ]
+    },
+    "grad boosting": {
+      "roc_auc": 0.7996,
+      "ci95": [
+        0.7714,
+        0.8254
+      ],
+      "pr_auc": 0.8171,
+      "fold_aucs": [
+        0.8338,
+        0.7778,
+        0.84,
+        0.765,
+        0.7929
+      ]
+    }
+  },
+  "top_univariate": [
+    {
+      "feature": "revs_per_day",
+      "auc": 0.720972851949983,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "max_revs_one_day",
+      "auc": 0.7169769321536473,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "size_abs_churn",
+      "auc": 0.7163783005778848,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "size_delta_std",
+      "auc": 0.7147336845881544,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "n_editors",
+      "auc": 0.6966558754500543,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "size_end",
+      "auc": 0.6896862478983061,
+      "direction": "higher in tagged"
+    },
+    {
+      "feature": "editor_hhi",
+      "auc": 0.6691361119635548,
+      "direction": "higher in control"
+    },
+    {
+      "feature": "talk_revs",
+      "auc": 0.6525538012024499,
+      "direction": "higher in tagged"
+    }
+  ],
+  "live_api_calls": 929
+}

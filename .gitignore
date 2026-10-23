@@ -1,0 +1,12 @@
+# API response cache — regenerates; never commit
+npov_cache/
+# large per-sentence intermediates — regenerate from the build scripts
+npov_data/*.jsonl
+# run logs / orchestration scratch
+*.log
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# os
+.DS_Store
