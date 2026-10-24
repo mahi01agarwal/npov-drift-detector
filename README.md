@@ -43,9 +43,24 @@ notebooks (built for [PAWS](https://paws.wmcloud.org)); 3–6 are scripts.
 | **NB3** Content | `build_text_features.py`, `score_bias_gpu.py`, `run_nb3.py`, `nb3_paired_delta.py` | Does the *text* add anything at tag time? | Neural subjectivity adds **+0.034** over the floor; lexicon features add nothing |
 | **NB4** Lead time | `build_leadtime_text.py`, `run_nb4.py` | Does the text signal rise *before* the tag? | **No** — flat at ~0.73 from 365 days out to the tag |
 | **NB4b** Section level | `build_sections.py`, `score_sections_gpu.py`, `run_sections_size.py`, `run_nb4_sections.py` | Does one *section* drift even if the article doesn't? | No bloat by volume; the hottest section is a strong static trait but its drift is null |
+| **NB-dir** Direction axis | `build_direction_input.py`, `score_direction.py`, `run_nb4_direction.py` | Does *one-sidedness* (due weight, not tone) drift before the tag? | **No** — tagged reads +0.12–0.14 more one-sided than its matched twin a year out, and stays flat to the tag |
 | **NB6** Watchlist | `run_watchlist.py` | Is it useful as triage? | Ranking a year ahead concentrates future-tagged articles ~**4–5× over base rate** at the top |
 
 ![Watchlist triage: a year-ahead list is about as good as same-day](npov_data/nb6_watchlist.png)
+
+### A second, independent construct: direction (one-sidedness)
+
+Subjectivity measures *tone* ("does it read loaded?"). A separate question is *one-sidedness* —
+whether an article represents the relevant viewpoints proportionally, or leans one way by
+emphasis and omission (due weight). We scored every snapshot with an LLM judge instructed to
+rate **balance only, ignoring tone**, and ran the identical lead-time test. The answer is the
+same: a later-tagged article already reads as more one-sided than its matched twin a full year
+out, with **no rise toward the tag** (difference-in-differences +0.02, 95% CI [-0.003, 0.043]).
+Bias *direction*, like bias *tone*, is a **static property** of dispute-prone articles, not a
+drift signal — a finding that converges with independent work in the Wikimedia Research team's
+NPOV workstream ([phab:T433445](https://phabricator.wikimedia.org/T433445)).
+
+![One-sidedness is static, not drifting](npov_data/nb4_direction_leadtime.png)
 
 ---
 
