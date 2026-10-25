@@ -44,6 +44,7 @@ notebooks (built for [PAWS](https://paws.wmcloud.org)); 3–6 are scripts.
 | **NB4** Lead time | `build_leadtime_text.py`, `run_nb4.py` | Does the text signal rise *before* the tag? | **No** — flat at ~0.73 from 365 days out to the tag |
 | **NB4b** Section level | `build_sections.py`, `score_sections_gpu.py`, `run_sections_size.py`, `run_nb4_sections.py` | Does one *section* drift even if the article doesn't? | No bloat by volume; the hottest section is a strong static trait but its drift is null |
 | **NB-dir** Direction axis | `build_direction_input.py`, `score_direction.py`, `run_nb4_direction.py` | Does *one-sidedness* (due weight, not tone) drift before the tag? | **No** — tagged reads +0.12–0.14 more one-sided than its matched twin a year out, and stays flat to the tag |
+| **NB-clf** Fine-tuned detector | `build_clf_data.py`, `train_clf.py`, `run_clf_length_control.py`, `*_expanded.py` | Does an *on-task* model (RoBERTa fine-tuned on tagged vs. control text) find drift the WNC classifier missed? | **A small, real one** — DiD **+0.008** [0.002, 0.014], robust to temporal splits and to a length control — but a plain TF-IDF bag-of-words model matches it, so the drift is **lexical, not semantic** |
 | **NB6** Watchlist | `run_watchlist.py` | Is it useful as triage? | Ranking a year ahead concentrates future-tagged articles ~**4–5× over base rate** at the top |
 
 ![Watchlist triage: a year-ahead list is about as good as same-day](npov_data/nb6_watchlist.png)
@@ -61,6 +62,29 @@ drift signal — a finding that converges with independent work in the Wikimedia
 NPOV workstream ([phab:T433445](https://phabricator.wikimedia.org/T433445)).
 
 ![One-sidedness is static, not drifting](npov_data/nb4_direction_leadtime.png)
+
+### A refinement: one signal *does* drift — and it is lexical, not semantic
+
+The static picture above holds for every *tone* and *direction* signal we built. But when we
+stopped borrowing an off-the-shelf neutrality classifier and **fine-tuned a detector on the task
+itself** (RoBERTa, tagged vs. matched-control text), a small pre-onset drift appeared and survived
+every check we could throw at it: a difference-in-differences of **+0.008** [0.002, 0.014] from a
+year out to the tag, holding under a strict temporal train/test split and under a length control
+(tagged articles grow ~7× more words, but the drift is not explained by that growth).
+
+The interesting part is *what kind* of signal it is. A **plain TF-IDF bag-of-words** model
+reproduces the same drift (DiD +0.013 [0.006, 0.022]) and matches — even beats — the transformer on
+same-day detection. And when we **grew the training set ~40%** (481 → 688 matched pairs), the
+transformer's drift *collapsed to zero* (+0.002 [-0.001, 0.005]) while the bag-of-words drift stayed
+significant (+0.0095 [0.003, 0.016]). More data and more model capacity surfaced **no** hidden
+semantic signal — they confirmed there is none beyond the words.
+
+> **The one thing that drifts is vocabulary.** Dispute-era words (*but, claims, alleged,
+> controversy*, …) accumulate in the prose before a tag, and a 1990s-style lexical model captures
+> that as well as a transformer. So the refined claim is: bias is largely a **static risk factor**,
+> plus a **small, purely lexical** pre-onset drift — and we stop short of calling it drift in the
+> *meaning* of the text.
+
 
 ---
 
