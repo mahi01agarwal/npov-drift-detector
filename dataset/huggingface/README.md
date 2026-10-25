@@ -57,8 +57,8 @@ shares a Wikipedia category and has comparable edit activity, so the comparison 
 ```python
 from datasets import load_dataset
 
-events   = load_dataset("<your-namespace>/npov-onset", "events",   split="train")
-controls = load_dataset("<your-namespace>/npov-onset", "controls", split="train")
+events   = load_dataset("MahimaSinghal/npov-onset", "events",   split="train")
+controls = load_dataset("MahimaSinghal/npov-onset", "controls", split="train")
 
 # Reconstruct matched pairs (one control per event, join on title):
 ctrl_by_event = {c["matched_to"]: c for c in controls}
