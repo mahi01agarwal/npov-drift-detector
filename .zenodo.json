@@ -1,0 +1,41 @@
+{
+  "title": "NPOV-Onset: a dated benchmark of neutral-point-of-view dispute onsets on English Wikipedia",
+  "upload_type": "dataset",
+  "description": "<p>A dated benchmark of ~2,000 English Wikipedia neutral-point-of-view (NPOV) dispute onsets. Each event is localised by binary search to the exact revision that introduced the maintenance template (correcting for the ~26% of templates that are bot-dated), and paired with a topically and activity-matched never-tagged control. Released with the code for a seven-stage lead-time evaluation of whether articles drift away from neutrality before an editor flags them. Everything derives from public English Wikipedia revisions collected read-only through the MediaWiki Action API. See the datasheet (DATASHEET.md) for full composition, collection, and field documentation.</p><p>Tracking task: <a href=\"https://phabricator.wikimedia.org/T428896\">phab:T428896</a>.</p>",
+  "access_right": "open",
+  "license": "CC-BY-SA-4.0",
+  "language": "eng",
+  "version": "1.0",
+  "keywords": [
+    "Wikipedia",
+    "neutral point of view",
+    "NPOV",
+    "content moderation",
+    "maintenance templates",
+    "natural language processing",
+    "benchmark dataset",
+    "lead-time analysis",
+    "difference-in-differences"
+  ],
+  "creators": [
+    { "name": "Agarwal, Mahima" },
+    { "name": "Dev" }
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/mahi01agarwal/npov-drift-detector",
+      "scheme": "url"
+    },
+    {
+      "relation": "isDocumentedBy",
+      "identifier": "https://phabricator.wikimedia.org/T428896",
+      "scheme": "url"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://en.wikipedia.org",
+      "scheme": "url"
+    }
+  ]
+}

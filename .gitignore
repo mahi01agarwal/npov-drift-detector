@@ -10,3 +10,6 @@ __pycache__/
 .ipynb_checkpoints/
 # os
 .DS_Store
+
+# HF upload bundle duplicates the CSVs already in npov_data/
+dataset/huggingface/*.csv

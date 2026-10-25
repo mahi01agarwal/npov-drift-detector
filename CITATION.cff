@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use NPOV-Onset or this code, please cite it as below."
+title: "NPOV-Onset: a dated benchmark of neutral-point-of-view dispute onsets on English Wikipedia"
+abstract: >-
+  A dated benchmark of ~2,000 English Wikipedia neutral-point-of-view (NPOV)
+  dispute onsets, each localised by binary search to the exact revision that
+  introduced the maintenance template, paired with topically and
+  activity-matched never-tagged controls. Released with the code for a
+  seven-stage lead-time evaluation of whether articles drift away from
+  neutrality before they are flagged.
+type: dataset
+authors:
+  - given-names: Mahima
+    family-names: Agarwal
+    alias: AgarwalMahima
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # add if available
+  - given-names: Dev
+    alias: Devdoingdev
+version: "1.0"
+date-released: "2026-10-25"
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/mahi01agarwal/npov-drift-detector"
+keywords:
+  - Wikipedia
+  - neutral point of view
+  - NPOV
+  - content moderation
+  - maintenance templates
+  - natural language processing
+  - benchmark dataset
+  - lead-time analysis
+references:
+  - type: generic
+    title: "Tracking task T428896 (Wikimedia Phabricator)"
+    url: "https://phabricator.wikimedia.org/T428896"
